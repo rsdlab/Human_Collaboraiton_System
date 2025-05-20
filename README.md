@@ -95,9 +95,26 @@ https://wwwms.meijo-u.ac.jp/kohara/technicalreport/ros_motoman_gp8_setup
 ハードウェア，実行シナリオを変える場合にはユーザ定義ファイルであるHumanCollaborationUserDefineModule.pyを適宜変更する．
 
 ハードウェアを立ち上げた後に実行するコマンドは以下の通りである. 
+なお、ハードウェアの立ち上げが完了した時点で、roscoreは実行されているいるものとする
+人協働マニピュレーションモジュールの立ち上げ
 ```sh
 $ rosrun human_collaboration HumanCollaborationModule.py
 ```
+ワーク位置検出サブシステムの立ち上げ
+```sh
+$ rosrun work_detection WorkDetectionNode.py
+```
+排出位置検出サブシステムの立ち上げ
+```sh
+$ rosrun discharge_position_detect DischargePositionDetectionModule.py
+```
+上位アプリシステムの立ち上げ
+```sh
+$  rosrun system_management SystemManagementNode.py
+```
+
+
+
 
 ## システムモデル
 システム間のデータのやりとりは以下の通りである
