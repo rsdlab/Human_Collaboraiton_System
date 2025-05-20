@@ -96,6 +96,7 @@ https://wwwms.meijo-u.ac.jp/kohara/technicalreport/ros_motoman_gp8_setup
 
 ハードウェアを立ち上げた後に実行するコマンドは以下の通りである. 
 なお、ハードウェアの立ち上げが完了した時点で、roscoreは実行されているいるものとする
+
 人協働マニピュレーションモジュールの立ち上げ
 ```sh
 $ rosrun human_collaboration HumanCollaborationModule.py
