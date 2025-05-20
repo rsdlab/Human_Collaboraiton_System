@@ -72,6 +72,7 @@
 # インストール方法
 
 このリポジトリを自身の環境に合わせてクローンする
+また、branchを指定すれば、指定したロボットコードを取得することができる。
 ```sh
 $ cd catkin_ws/src
 $ git clone https://github.com/rsdlab/Human_Collaboraiton_System
