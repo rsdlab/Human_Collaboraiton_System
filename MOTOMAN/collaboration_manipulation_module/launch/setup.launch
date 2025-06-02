@@ -1,0 +1,52 @@
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="static_tf_camera" output="screen" args="0.47 0.0 1.15 1.57 0.0 -3.14 base_link camera 1000" respawn="true" respawn_delay="1" />
+  
+   <!-- for camera  -->
+    <!-- usb_acmノードを実行する -->
+    <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen">
+        <!-- カメラの指定　defaultは/dev/video0 -->
+        <param name="video_device" value="/dev/video2"/>
+        <!-- 画像の大きさ（横幅）の指定 -->
+        <param name="image_width" value="640"/>
+        <!-- 画像の大きさ（縦幅）の指定 -->
+        <param name="image_height" value="480"/>
+        <!-- 画像フォーマット設定　"mjpeg" or "yuyv" or "uyvy" -->
+        <param name="pixel_format" value="yuyv"/>
+        <!-- fpsの指定　frame per second -->
+        <param name="framerate" value="30"/>
+        <!-- コントラストの設定（色設１） -->
+        <param name="contrast" value="32"/>
+        <!-- 明るさの設定（色設２） -->
+        <param name="brightness" value="32"/>
+        <!-- 彩度の設定（色設３） -->
+        <param name="saturation" value="32"/>
+        <!-- 自動フォーカス機能の設定　ブール値 -->
+        <param name="autofocus" value="true"/>
+        <!-- フォーカス位置の設定 -->
+        <param name="focus" value="51"/>
+        <param name="camera_info_url" type="string" value="file:////home/rsdlab/Documents/ost.yaml" />
+    </node>
+
+    <!-- for aruco -->
+    <arg name="markerSize"      default="0.05"/>    <!-- in m -->
+    <arg name="eye"             default="left"/>
+    <arg name="marker_frame"    default="/marker_frame"/>
+    <arg name="ref_frame"       default="/camera"/>  <!-- leave empty and the pose will be published wrt param parent_name -->
+
+    <node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher">
+        <remap from="/camera_info" to="/usb_cam/camera_info" />
+        <remap from="/image" to="/usb_cam/image_raw" />
+        <param name="image_is_rectified" value="True"/>
+        <param name="marker_size"        value="$(arg markerSize)"/>
+        <param name="reference_frame"    value="$(arg ref_frame)"/>   <!-- frame in which the marker pose will be refered -->
+            
+        <param name="camera_frame"       value="camera"/>
+        <param name="marker_frame"       value="$(arg marker_frame)" />  
+        <!-- <param name="corner_refinement"  value="$(arg corner_refinement)" />      -->
+    </node>
+
+    <!-- for hand -->
+    <!-- <node pkg="aspina_hand" type="aspina_hand_node" name="aspina_hand" output="screen" /> -->
+    <!-- <node pkg="motoman_arm_test" type="hand_test" name="hand_test_node" output="screen" /> -->
+
+</launch>
