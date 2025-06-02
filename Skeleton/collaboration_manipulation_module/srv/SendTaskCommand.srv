@@ -1,0 +1,4 @@
+#作業指令を伝達する
+collaboration_manipulation_message/TaskCommandList task_commands #作業指令：作業指令リスト
+---
+int16 response #作業指令応答

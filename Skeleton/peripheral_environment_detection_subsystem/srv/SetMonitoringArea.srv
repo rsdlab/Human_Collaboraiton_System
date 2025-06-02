@@ -1,0 +1,4 @@
+#監視エリアを設定する
+collaboration_manipulation_message/MonitoringAreaList monitoring_areas #設定情報リスト：エリア設定リスト
+---
+int16 response #設定結果
