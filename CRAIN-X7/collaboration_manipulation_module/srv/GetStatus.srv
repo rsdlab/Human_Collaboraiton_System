@@ -1,0 +1,4 @@
+#状態を取得する
+std_msgs/Empty empty #引数なし
+---
+collaboration_manipulation_message/Status status # 状態情報

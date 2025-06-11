@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>task_status_monitor_system</name>
+  <version>0.0.0</version>
+  <description>The task_status_monitor_system package</description>
+  <maintainer email="yamamoto@rsdlab.jp">Yukiya Yamamto</maintainer>
+  <author email="yamamoto@rsdlab.jp">Yukiya Yamamto</author>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>collaboration_manipulation_message</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+</package>
