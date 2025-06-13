@@ -1,0 +1,4 @@
+#作業完了を通知する
+uint16 task_command_list_id #作業指令リストID：UnlimitedNatural [0..1]
+---
+int16 return_code # ReturnCode

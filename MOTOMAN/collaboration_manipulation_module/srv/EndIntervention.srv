@@ -1,0 +1,4 @@
+#介入作業を終了する
+uint16[] step_ids #動作ステップID：UnlimitedNatural [1..*] {ordered}
+---
+int16 return_code # ReturnCode
