@@ -1,3 +1,0 @@
-uint16 task_command_id
----
-std_msgs/Empty empty

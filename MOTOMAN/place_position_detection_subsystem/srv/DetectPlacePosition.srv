@@ -1,4 +1,0 @@
-#排出位置を検出する
-collaboration_manipulation_message/TargetArea[] discharge_area #排出位置候補エリアリスト：3Dエリア [0..N] {ordered}
----
-collaboration_manipulation_message/PlacePositionDetectionResult place_position_detection_result #設定結果

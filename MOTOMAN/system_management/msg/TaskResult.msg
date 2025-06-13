@@ -1,3 +1,0 @@
-uint16 task_command_id
-uint16 number_of_items_picked
-bool task_result
