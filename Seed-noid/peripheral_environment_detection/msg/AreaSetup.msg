@@ -1,2 +1,0 @@
-human_collaboration/TargetArea target_area
-int16 area_division

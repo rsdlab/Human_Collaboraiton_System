@@ -1,2 +1,0 @@
-int16 cooperative_work_range
-int16 non_cooperative_work_range

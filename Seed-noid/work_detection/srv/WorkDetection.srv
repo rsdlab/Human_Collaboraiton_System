@@ -1,5 +1,0 @@
-int32 task_command_id
-int32 work_type_id
-human_collaboration/TargetArea target_area
----
-WorkDetectionResultList work_detection_result_list
