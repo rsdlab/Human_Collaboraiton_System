@@ -1,4 +1,0 @@
-#協調作業を開始する
-std_msgs/Empty empty #引数なし
----
-int16 return_code # ReturnCode

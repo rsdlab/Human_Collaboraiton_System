@@ -1,4 +1,0 @@
-#作業を一時停止する
-string instructor #停止指示者[0..1]
----
-int16 return_code # ReturnCode

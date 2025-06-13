@@ -1,7 +1,0 @@
-#ワークを認識する
-uint16 task_command_id                                    #作業指令ID：UnlimitedNatural
-uint16 work_type_id                                       #ワーク種類ID：UnlimitedNatural
-collaboration_manipulation_message/TargetArea target_area #対象エリア：3Dエリア
-collaboration_manipulation_message/Property[] properties  #追加情報：プロパティ[0..*] {ordered}
----
-collaboration_manipulation_message/WorkDetectionResultList work_detection_results #ワーク認識結果リスト

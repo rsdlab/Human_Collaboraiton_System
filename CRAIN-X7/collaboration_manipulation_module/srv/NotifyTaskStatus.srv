@@ -1,4 +1,0 @@
-#作業状態を通知する
-collaboration_manipulation_message/TaskStatus task_status #状態：作業状態
----
-int16 return_code # ReturnCode
