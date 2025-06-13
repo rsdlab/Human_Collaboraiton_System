@@ -1,4 +1,0 @@
-#作業結果を伝達する
-collaboration_manipulation_message/TaskResult task_result #作業結果：作業結果
----
-int16 return_code # ReturnCode
