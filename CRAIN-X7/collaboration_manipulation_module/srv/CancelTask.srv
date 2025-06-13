@@ -1,0 +1,4 @@
+#作業を中断する
+uint16 task_command_id #作業指令ID：UnlimitedNatural
+---
+int16 return_code # ReturnCode

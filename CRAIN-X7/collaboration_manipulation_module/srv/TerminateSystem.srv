@@ -1,0 +1,4 @@
+#システムを終了する
+std_msgs/Empty empty #引数なし
+---
+int16 return_code # ReturnCode
