@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="tf" type="static_transform_publisher" name="static_tf_camera" output="screen" args="0.47 0.0 1.15 1.57 0.0 -3.14 base_link camera 1000" respawn="true" respawn_delay="1" />
+    
+    <!-- <node pkg="peripheral_environment_detection_module" type="PerEnvDetectNode.py" name="per_env_node" output="screen" /> -->
+
+    <!-- <node pkg="discharge_position_detect_module" type="DischargePositionDetectionModule.py" name="dis_charge_node" output="screen" /> -->
+
+    <!-- <node pkg="work_detection_module" type="WorkDetectionNode.py" name="work_detect_node" output="screen" /> -->
+    
+    <!-- <node pkg="human_collaboration" type="nongrasp.py" name="human_collaboration_node" output="screen" /> -->
+     <node pkg="human_collaboration" type="HumanCollaborationModule.py" name="human_collaboration_node" output="screen" />
+
+</launch>
