@@ -73,19 +73,19 @@ https://wwwms.meijo-u.ac.jp/kohara/technicalreport/ros_motoman_gp8_setup
 
 人協働マニピュレーションモジュールの立ち上げ
 ```sh
-$ rosrun human_collaboration HumanCollaborationModule.py
+$ rosrun collaboration_manipulation_module CollaborationManipulationModule.py
 ```
 ワーク位置検出サブシステムの立ち上げ
 ```sh
-$ rosrun work_detection WorkDetectionNode.py
+$ rosrun workpieces_detection_subsystem WorkpiecesDetectionNode.py
 ```
 排出位置検出サブシステムの立ち上げ
 ```sh
-$ rosrun discharge_position_detect DischargePositionDetectionModule.py
+$ rosrun workspace_perception_subsystem WSRecognizeModule.py
 ```
 上位アプリシステムの立ち上げ
 ```sh
-$  rosrun system_management SystemManagementNode.py
+$  rosrun management_system ManagementSystemNode.py
 ```
 
 
