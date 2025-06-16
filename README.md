@@ -110,7 +110,7 @@ $  rosrun management_system ManagementSystemNode.py
 # パッケージ概要
 各パッケージの機能以下の通りである．
 
-## system_management(上位アプリ）
+## management_system(上位アプリ）
 工場の生産計画等に基づいて，ロボットシステムに対して搬送（Pick & Place）作業を指示する．指示は
 
 ・対象物(ワーク)は何か（ワークのID）
@@ -123,7 +123,7 @@ $  rosrun management_system ManagementSystemNode.py
 
 をリストとして指令する．この作業を実現するための具体的なそれぞれの機器の動作の詳細（実現手段）は｢上位アプリ｣からは与えられず，｢人協働マニピュレーションモジュール｣が手段を創り出すことが求められている．
 
-## human_collaboration(人協働マニピュレーションモジュール)
+## collaboration_manipulation_module(人協働マニピュレーションモジュール)
 ｢上位アプリ｣からの指令に基づいて，作業の目的（pick & place）を実現するための手段を生成し実行する．
 
 　1).｢ワーク検出サブシステム｣を用いてpickするワークの有無及び位置姿勢を検出し，
@@ -136,14 +136,14 @@ $  rosrun management_system ManagementSystemNode.py
 
 ※現在は、ワーク搬送の複数実行には対応していない
 
-## work_detection(ワーク検出サブシステム)
+## workpieces_detection_subsystem(ワーク検出サブシステム)
 ｢人協働マニピュレーションモジュール｣からの指令に基づいて，指示されたワークを検出し，その位置姿勢を返す．
 
 ｢ワーク検出サブシステム｣には，ワークの認識に必要となる情報が事前に登録されており，ワークの種類に応じてIDで管理されているものとする．
 
 ※仕様で定義されているオプション機能に関しては未実装となっている
 
-## discharge_position_detect（排出位置検出サブシステム）
+##  workspace_perception_subsystem（排出位置検出サブシステム）
 pickしたワークをplaceする場所を検出するサブシステム．
 
 ※オプション機能となっているため、現在は通信のみの実装となっている
@@ -153,7 +153,7 @@ pickしたワークをplaceする場所を検出するサブシステム．
 
 ※オプション機能となっているため、現在は未実装となっている
 
-## peripheral_environment_detection　(周辺環境認識サブシステム)
+## peripheral_environment_detection_subsystem(周辺環境認識サブシステム)
 ロボットの周辺環境に想定外のモノや人が侵入したことを検出するシステム
 
 ※オプション機能となっているため、現在は未実装となっている
