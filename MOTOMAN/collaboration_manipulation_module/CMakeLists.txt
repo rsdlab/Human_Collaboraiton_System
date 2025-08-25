@@ -66,6 +66,11 @@ find_package(catkin REQUIRED COMPONENTS
    GetStatus.srv
    SendTaskCommand.srv
    TerminateSystem.srv
+   StartManipulationTask.srv
+   StopManipulationTask.srv
+   PauseTask.srv
+   ResumeTask.srv
+   NotifyTaskStatus.srv
  )
 
 ## Generate actions in the 'action' folder

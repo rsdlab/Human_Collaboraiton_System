@@ -1,0 +1,5 @@
+#一時停止完了を通知する
+uint16[] step_ids      #動作ステップID：UnlimitedNatulal[0..*]{ordered}
+float32[] joint_angles #関節角度リスト:Real[0..*]{ordered}
+---
+int16 return_code # ReturnCode

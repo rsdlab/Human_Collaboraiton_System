@@ -1,0 +1,4 @@
+#作業の一時停止を解除する
+uint16[] step_ids #動作ステップID：UnlimitedNutulal[0..*]{ordered}
+---
+int16 return_code # ReturnCode

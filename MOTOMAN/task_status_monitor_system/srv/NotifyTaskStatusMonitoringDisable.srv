@@ -1,0 +1,4 @@
+#作業状態監視を無効化する
+std_msgs/Empty empty #引数なし
+---
+int16 return_code # ReturnCode
