@@ -35,6 +35,7 @@ from std_msgs.msg import String
 PICK_COMMAND = 0
 DOWN_COMMAND = 1
 PLACE_COMMAND = 2
+RELEASE_COMMAND = 3
 
 # 相対パスでhuman_collaboration/scriptsのパスを追加
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../collaboration_manipulation_module/scripts'))
@@ -336,6 +337,10 @@ class TestMover():
         vel_msg.angular.z = 0
         self.cmd_pub.publish(vel_msg)
 
+def communication():
+    rospy.Service('move_seed_noid', MoveCommunication, main)
+    rospy.spin()
+
 def halt():
     cmd = TerminateSystemClient()
     #終了処理
@@ -394,7 +399,7 @@ def main(data = None):
     rospy.sleep(1)
     testmover.rotate(-1.57, -0.2, (5.23)*1.51)
     rospy.sleep(1)
-    testmover.pub_x_vel(0.2551, 0.2)
+    testmover.pub_x_vel(0.1751, 0.15)
 
     #リリース
     print("Place")
@@ -413,11 +418,11 @@ def main(data = None):
         return Empty()
 
     #戻る
-    testmover.pub_x_vel(-0.2551, 0.3)
+    testmover.pub_x_vel(-0.1751, 0.3)
     testmover.rotate(-1.57, -0.3, 5.23)
     testmover.pub_x_vel(1.975, 0.3)
     testmover.rotate(1.57, 0.3, 5.23)
-    testmover.pub_x_vel(1.250, 0.3)
+    testmover.pub_x_vel(1.18, 0.3)
     
     result.service_delete()
     complete.service_delete()
@@ -427,6 +432,31 @@ def wait(result:TaskResultServer, comp:TaskCompleteServer):
     while ((False == result.get_task_failed()) and (False == comp.get_task_complete()) and (not rospy.is_shutdown())):
         rospy.sleep(0.05)
     return 
+
+def release(data = None):
+    cmd = SendTaskCommandClient()
+    result = TaskResultServer()
+    complete = TaskCompleteServer()
+
+    #ピック
+    print("release")
+    result.reset_task_result()
+    complete.reset_task_complete()
+    #送信完了まで繰り返す.
+    while (EnumCommandReceiveState.e_received() != cmd.execute(RELEASE_COMMAND).response):
+        print("command_retry")
+        rospy.sleep(1)
+    
+    #動作完了まで待つ.
+    wait(result, complete)
+    if(True == result.get_task_failed()):
+        result.service_delete()
+        complete.service_delete()
+        return Empty()
+    
+    result.service_delete()
+    complete.service_delete()
+    return Empty()
 
 
 if __name__ == '__main__':
@@ -438,6 +468,10 @@ if __name__ == '__main__':
             #システム終了指令.
             if 'halt' == args[1]:
                 halt()
+            elif 'comm' == args[1]:
+                communication()
+            elif 'release' == args[1]:
+                release()
             else:
                 main()
         else:

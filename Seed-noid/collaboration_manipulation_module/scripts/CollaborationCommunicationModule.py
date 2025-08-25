@@ -323,12 +323,18 @@ class NotifyTaskResultClient(CollaborationClient):
         res.task_result.picked_number = number_of_items_picked
         res.task_result.task_result = task_result
         try:
-            self.proxy(res)
-            CollaborationTool.loginfo("Task Result")
+            rospy.wait_for_service('notify_task_result', timeout=0.01)
+            try:
+                self.proxy(res)
+                CollaborationTool.loginfo("Task Result")
+                return True
+            except CollaborationTool.ServiceException as e:
+                CollaborationTool.loginfo("ServiceException : %s" % e)
+                return False
+        except rospy.ROSException:
+            # サービスが起動していない → 通信せずスキップ.
+            CollaborationTool.loginfo("Service 'notify_task_result' not available. Skipping service call.")
             return True
-        except CollaborationTool.ServiceException as e:
-            CollaborationTool.loginfo("ServiceException : %s" % e)
-            return False
 
 #サーバーに作業完了を送信するクラス.
 class NotifyTaskCompleteClient(CollaborationClient):
@@ -337,13 +343,19 @@ class NotifyTaskCompleteClient(CollaborationClient):
 
     def execute(self, object):
         try:
-            req = NotifyTaskCompletionRequest()
-            self.proxy(req)
-            CollaborationTool.loginfo("Task Complete")
+            rospy.wait_for_service('notify_task_completion', timeout=0.01)
+            try:
+                req = NotifyTaskCompletionRequest()
+                self.proxy(req)
+                CollaborationTool.loginfo("Task Complete")
+                return True
+            except CollaborationTool.ServiceException as e:
+                CollaborationTool.loginfo("ServiceException : %s" % e)
+                return False
+        except rospy.ROSException:
+            # サービスが起動していない → 通信せずスキップ.
+            CollaborationTool.loginfo("Service 'notify_task_completion' not available. Skipping service call.")
             return True
-        except CollaborationTool.ServiceException as e:
-            CollaborationTool.loginfo("ServiceException : %s" % e)
-            return False
 
 #サーバーにワーク認識指令を出すクラス.
 class WorkDetectionClient(CollaborationClient):

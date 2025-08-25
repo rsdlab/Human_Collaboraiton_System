@@ -21,6 +21,7 @@ NON_OPERATING_WAIT = 1
 PICK_COMMAND = 0
 DOWN_COMMAND = 1
 PLACE_COMMAND = 2
+RELEASE_COMMAND = 3
 READY_APPROACH_VAL_01 = 0.0
 READY_APPROACH_VAL_02 = 0.0
 READY_APPROACH_VAL_03 = 0.0
@@ -482,6 +483,8 @@ class OPERATING_WORK(CollaborationState):
             ret = self.down_move()
         elif(PLACE_COMMAND == command_id):
             ret = self.place_move()
+        elif(RELEASE_COMMAND == command_id):
+            ret = self.release_move()
         
         #ここまで.
         self.work_label = None
@@ -693,6 +696,100 @@ class OPERATING_WORK(CollaborationState):
         if (None == self.work_label) or ('CurrentManip' == self.work_label):
             while not CollaborationTool.is_shutdown():
                 self.work_label = 'CurrentManip1'
+                ret = self.init_pose_lifter()
+                if 'succeeded' == ret:
+                    self.work_label = None
+                    break
+                elif 'retry' == ret:
+                    continue
+                else:
+                    return ret
+
+        self.work_label = None
+        return 'succeeded'
+    
+    def release_move(self):
+        #上昇位置.
+        if (None == self.work_label) or ('Release1' == self.work_label):
+            while not CollaborationTool.is_shutdown():
+                self.work_label = 'Release1'
+                ret = self.joint_manip_upper(UP_VAL_01, UP_VAL_02, UP_VAL_03, UP_VAL_04, UP_VAL_05, UP_VAL_06, UP_VAL_07,
+                                             UP_VAL_08, UP_VAL_09, UP_VAL_10, UP_VAL_11, UP_VAL_12, UP_VAL_13, UP_VAL_14,
+                                             UP_VAL_15, UP_VAL_16, UP_VAL_17, UP_VAL_18, UP_VAL_19, UP_VAL_20, UP_VAL_21,
+                                             UP_VAL_22, UP_VAL_23, UP_VAL_24, UP_VAL_25, UP_VAL_26, UP_VEL)
+                if 'succeeded' == ret:
+                    self.work_label = None
+                    break
+                elif 'retry' == ret:
+                    continue
+                else:
+                    return ret
+        
+        #つかみ位置.
+        if (None == self.work_label) or ('Release2' == self.work_label):
+            while not CollaborationTool.is_shutdown():
+                self.work_label = 'Release2'
+                ret = self.joint_manip_upper(PICK_VAL_01, PICK_VAL_02, PICK_VAL_03, PICK_VAL_04, PICK_VAL_05, PICK_VAL_06, PICK_VAL_07,
+                                             PICK_VAL_08, PICK_VAL_09, PICK_VAL_10, PICK_VAL_11, PICK_VAL_12, PICK_VAL_13, PICK_VAL_14,
+                                             PICK_VAL_15, PICK_VAL_16, PICK_VAL_17, PICK_VAL_18, PICK_VAL_19, PICK_VAL_20, PICK_VAL_21,
+                                             PICK_VAL_22, PICK_VAL_23, PICK_VAL_24, PICK_VAL_25, PICK_VAL_26, PICK_VEL)
+                if 'succeeded' == ret:
+                    self.work_label = None
+                    break
+                elif 'retry' == ret:
+                    continue
+                else:
+                    return ret
+        
+        #リリース位置.
+        if (None == self.work_label) or ('Release3' == self.work_label):
+            while not CollaborationTool.is_shutdown():
+                self.work_label = 'Release3'
+                ret = self.joint_manip_upper(APPROACH_VAL_01, APPROACH_VAL_02, APPROACH_VAL_03, APPROACH_VAL_04, APPROACH_VAL_05, APPROACH_VAL_06, APPROACH_VAL_07,
+                                             APPROACH_VAL_08, APPROACH_VAL_09, APPROACH_VAL_10, APPROACH_VAL_11, APPROACH_VAL_12, APPROACH_VAL_13, APPROACH_VAL_14,
+                                             APPROACH_VAL_15, APPROACH_VAL_16, APPROACH_VAL_17, APPROACH_VAL_18, APPROACH_VAL_19, APPROACH_VAL_20, APPROACH_VAL_21,
+                                             APPROACH_VAL_22, APPROACH_VAL_23, APPROACH_VAL_24, APPROACH_VAL_25, APPROACH_VAL_26, APPROACH_VEL)
+                if 'succeeded' == ret:
+                    self.work_label = None
+                    break
+                elif 'retry' == ret:
+                    continue
+                else:
+                    return ret
+
+        #初期化準備位置.
+        if (None == self.work_label) or ('ReadyInit2' == self.work_label):
+            while not CollaborationTool.is_shutdown():
+                self.work_label = 'ReadyApproach'
+                ret = self.joint_manip_upper(READY_APPROACH_VAL_01, READY_APPROACH_VAL_02, READY_APPROACH_VAL_03, READY_APPROACH_VAL_04, READY_APPROACH_VAL_05, READY_APPROACH_VAL_06, READY_APPROACH_VAL_07,
+                                             READY_APPROACH_VAL_08, READY_APPROACH_VAL_09, READY_APPROACH_VAL_10, READY_APPROACH_VAL_11, READY_APPROACH_VAL_12, READY_APPROACH_VAL_13, READY_APPROACH_VAL_14,
+                                             READY_APPROACH_VAL_15, READY_APPROACH_VAL_16, READY_APPROACH_VAL_17, READY_APPROACH_VAL_18, READY_APPROACH_VAL_19, READY_APPROACH_VAL_20, READY_APPROACH_VAL_21,
+                                             READY_APPROACH_VAL_22, READY_APPROACH_VAL_23, READY_APPROACH_VAL_24, READY_APPROACH_VAL_25, READY_APPROACH_VAL_26, READY_APPROACH_VEL)
+                if 'succeeded' == ret:
+                    self.work_label = None
+                    break
+                elif 'retry' == ret:
+                    continue
+                else:
+                    return ret
+
+        #上半身の初期位置.
+        if (None == self.work_label) or ('UpperInit2' == self.work_label):
+            while not CollaborationTool.is_shutdown():
+                self.work_label = 'TfManip'
+                ret = self.init_pose_upper_body()
+                if 'succeeded' == ret:
+                    self.work_label = None
+                    break
+                elif 'retry' == ret:
+                    continue
+                else:
+                    return ret
+        
+        #リフターの初期位置.
+        if (None == self.work_label) or ('InitManip2' == self.work_label):
+            while not CollaborationTool.is_shutdown():
+                self.work_label = 'InitManip2'
                 ret = self.init_pose_lifter()
                 if 'succeeded' == ret:
                     self.work_label = None

@@ -61,6 +61,8 @@ add_service_files(
   FILES
   NotifyTaskCompletion.srv
   NotifyTaskResult.srv
+  MoveCommunication.srv
+  NotifyPauseCompletion.srv
   )
 
 ## Generate actions in the 'action' folder

@@ -67,6 +67,11 @@ add_message_files(
   TargetArea.msg
   WorkDetectionResult.msg
   WorkDetectionResultList.msg
+  PersonObstacleInfomation.msg
+  PersonObstaclePoint.msg
+  PersonObstacleDetect.msg
+  EnviromentDetectionInfomation.msg
+  TaskStatus.msg
 )
 
 ## Generate services in the 'srv' folder

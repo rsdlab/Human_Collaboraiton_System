@@ -1,0 +1,4 @@
+#作業状態監視を有効化する
+uint16 step_id #動作ステップID：UnlimitedNatural
+---
+int16 return_code # ReturnCode
