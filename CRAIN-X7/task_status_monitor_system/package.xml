@@ -2,7 +2,7 @@
 <package format="2">
   <name>task_status_monitor_system</name>
   <version>0.0.0</version>
-  <description>The task_status_monitor_system package</description>
+  <description>This package is licensed under the MIT License.</description>
   <maintainer email="yamamoto@rsdlab.jp">Yukiya Yamamto</maintainer>
   <author email="yamamoto@rsdlab.jp">Yukiya Yamamto</author>
   <license>MIT</license>

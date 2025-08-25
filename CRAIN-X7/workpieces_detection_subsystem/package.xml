@@ -2,7 +2,7 @@
 <package format="2">
   <name>workpieces_detection_subsystem</name>
   <version>0.0.0</version>
-  <description>The workpieces_detection_subsystem package</description>
+  <description>This package is licensed under the MIT License.</description>
   <maintainer email="yamamoto@rsdlab.jp">Yukiya Yamamto</maintainer>
   <author email="yamamoto@rsdlab.jp">Yukiya Yamamto</author>
   <license>MIT</license>
